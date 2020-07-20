@@ -1,4 +1,4 @@
-class Braille
+class Dictionary
   #attr_reader :characters
 
   def initialize
@@ -9,7 +9,7 @@ class Braille
     letters = message.chars
     letters.map do |letter|
       @characters[letter]
-    end 
+    end
   end
 
 end
