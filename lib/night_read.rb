@@ -1,4 +1,4 @@
-require_relative 'message_reader'
+
 #require_relative 'message_writer'
 require_relative 'dictionary'
 
@@ -20,9 +20,9 @@ class NightRead
     end
   end
 
-  def translate_to_braille
+  def translate_to_braille(incoming_message)
     braille_characters =
-    lower_case_letters.map do |letter|
+      incoming_message.map do |letter|
       @dictionary.characters[letter]
     end
   end
@@ -51,6 +51,8 @@ class NightRead
     third_row
   end
 
-
+  def braille_output
+    puts "#{first_row.slice(0..79) << "\n"}\n#{second_row.slice(0..79) << "\n"}\n#{third_row.slice(0..79) << "\n"}"
+  end
 
 end
