@@ -11,18 +11,18 @@ class NightRead
   end
 
   def split_message
-    @incoming_message.split('')
+    @incoming_message.chars
   end
 
-  def lower_case_letters
-    letters = split_message.map do |letter|
-      letter.downcase
-    end
-  end
+  # def lower_case_letters
+  #   letters = split_message.map do |letter|
+  #     letter.downcase
+  #   end
+  # end
 
-  def translate_to_braille(incoming_message)
+  def translate_to_braille
     braille_characters =
-      incoming_message.map do |letter|
+      split_message.map do |letter|
       @dictionary.characters[letter]
     end
   end

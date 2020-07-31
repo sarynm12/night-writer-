@@ -22,13 +22,13 @@ class NightReadTest < Minitest::Test
 
   def test_it_can_translate
     night_read = NightRead.new("hello")
+    night_read.split_message
     assert_equal [["0.", "00", ".."], ["0.", ".0", ".."], ["0.", "0.", "0."], ["0.", "0.", "0."], ["0.", ".0", "0."]], night_read.translate_to_braille
   end
 
   def test_it_converts_one_letter_to_the_top_row_of_braille_character
     night_read = NightRead.new("ab")
     night_read.split_message
-    night_read.lower_case_letters
     night_read.translate_to_braille
     assert_equal "0.0.", night_read.first_row
   end
@@ -36,7 +36,6 @@ class NightReadTest < Minitest::Test
   def test_it_converts_one_letter_to_the_mid_row_of_braille_character
     night_read = NightRead.new("ab")
     night_read.split_message
-    night_read.lower_case_letters
     night_read.translate_to_braille
     assert_equal "0.0.", night_read.first_row
     assert_equal "..0.", night_read.second_row
@@ -45,7 +44,6 @@ class NightReadTest < Minitest::Test
   def test_it_converts_one_letter_to_the_bottom_row_of_braille_character
     night_read = NightRead.new("ab")
     night_read.split_message
-    night_read.lower_case_letters
     night_read.translate_to_braille
     assert_equal "0.0.", night_read.first_row
     assert_equal "..0.", night_read.second_row
