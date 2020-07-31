@@ -18,9 +18,10 @@ class NightRead
   #   end
   # end
 
-  def translate_to_braille(incoming_message)
+  def translate_to_braille
+    split_message
     braille_characters =
-      incoming_message.chars.map do |letter|
+      split_message.map do |letter|
       @dictionary.characters[letter]
     end
   end
