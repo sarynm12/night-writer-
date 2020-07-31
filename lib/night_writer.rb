@@ -8,8 +8,8 @@ require 'pry'
   lines.close
 
   night_read = NightRead.new(message)
-
-  braille = night_read.translate_to_braille(message)
+  night_read.split_message
+  braille = night_read.translate_to_braille
   writer = File.open(ARGV[1], 'w')
   writer.write(braille)
 
