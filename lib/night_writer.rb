@@ -5,12 +5,11 @@ require 'pry'
   lines = File.open('message.txt', 'r')
   message = File.read(ARGV[0])
   characters_count = message.length
-  letters = message.chars
   lines.close
 
-  night_read = NightRead.new(letters)
+  night_read = NightRead.new(message)
 
-  braille = night_read.translate_to_braille(letters)
+  braille = night_read.translate_to_braille(message)
   writer = File.open(ARGV[1], 'w')
   writer.write(braille)
 
