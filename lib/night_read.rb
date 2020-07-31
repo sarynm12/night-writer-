@@ -52,7 +52,7 @@ class NightRead
   end
 
   def braille_output
-    puts "#{first_row.slice(0..79) << "\n"}\n#{second_row.slice(0..79) << "\n"}\n#{third_row.slice(0..79) << "\n"}"
+    puts "#{first_row.slice!(0..79) << "\n"}\n#{second_row.slice!(0..79) << "\n"}\n#{third_row.slice!(0..79) << "\n"}"
   end
 
 end

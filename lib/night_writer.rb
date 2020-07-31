@@ -17,5 +17,3 @@ require 'pry'
   writer.close
 
   puts "Created #{ARGV[1]} containing #{characters_count} characters"
-
-  require "pry"; binding.pry
