@@ -14,11 +14,13 @@ class NightRead
     @incoming_message.chars
   end
 
-  # def lower_case_letters
-  #   letters = split_message.map do |letter|
-  #     letter.downcase
-  #   end
-  # end
+  def create_braille_groups
+    letter_1 = split_message[0].scan(/../)
+    letter_2 = split_message[1].scan(/../)
+    letter_3 = split_message[2].scan(/../)
+    letters = letter_1.zip(letter_2, letter_3)
+    translate_to_braille.join
+  end
 
   def translate_to_braille
     split_message
@@ -69,57 +71,3 @@ class NightRead
   end
 
 end
-
-
-
-# def format_braille_output(translated_array)
-#   transposed_array = translated_array.transpose
-#   chunked_for_print = []
-#   until transposed_array.flatten.count == 0 do
-#     chunked_for_print << transposed_array[0].slice!(0..39).join
-#     chunked_for_print << "\n"
-#     chunked_for_print << transposed_array[1].slice!(0..39).join
-#     chunked_for_print << "\n"
-#     chunked_for_print << transposed_array[2].slice!(0..39).join
-#     chunked_for_print << "\n\n"
-#   end
-#   chunked_for_print.join
-# end
-
-
-
-
-
-
-# def rows
-#   @top_row = ""
-#   @mid_row = ""
-#   @bot_row = ""
-# end
-#
-# def english_to_braille(message)
-#   rows
-#   message.chars.map do |character|
-#     character
-#
-#     @top_row << braillealphabet[character.downcase].split("\n")[0]
-#     @mid_row << braillealphabet[character.downcase].split("\n")[1]
-#     @bot_row << braillealphabet[character.downcase].split("\n")[2]
-# end
-#
-#     [@top_row, @mid_row, @bot_row].join("\n")
-#
-# end
-#
-# def braille_to_english(message)
-#     braille_to_english = ""
-#    split = message.split("\n")
-#   until split == ["","",""]
-#     rows
-#
-#     @top_row << split[0].slice!(0,2)
-#     @mid_row << split[1].slice!(0,2)
-#     @bot_row << split[2].slice!(0,2)
-#
-#   end
-# end
