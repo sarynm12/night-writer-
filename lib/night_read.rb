@@ -1,8 +1,8 @@
 require_relative 'dictionary'
 
 class NightRead
-  attr_reader :dictionary, :incoming_message
-  attr_accessor :outgoing_text
+  attr_reader :dictionary, :incoming_message, :outgoing_text
+  #attr_accessor :outgoing_text
 
   def initialize(incoming_message)
     @incoming_message = incoming_message

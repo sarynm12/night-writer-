@@ -54,7 +54,8 @@ class NightReadTest < Minitest::Test
     night_read = NightRead.new("hello world")
     night_read.split_message
     night_read.translate_to_braille
-
+    night_read.eighty_characters
+    require "pry"; binding.pry
   end
 
 end

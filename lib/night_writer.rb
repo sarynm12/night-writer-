@@ -12,6 +12,7 @@ require 'pry'
   braille = night_read.translate_to_braille
   writer = File.open(ARGV[1], 'w')
   writer.write(braille)
+  #writer.write(night_read.outgoing_text)
 
   writer.close
 
