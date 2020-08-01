@@ -26,14 +26,14 @@ class NightReadTest < Minitest::Test
     assert_equal [["0.", "00", ".."], ["0.", ".0", ".."], ["0.", "0.", "0."], ["0.", "0.", "0."], ["0.", ".0", "0."]], night_read.translate_to_braille
   end
 
-  def test_it_converts_one_letter_to_the_top_row_of_braille_character
+  def test_it_converts_appropriate_characters_to_first_row
     night_read = NightRead.new("hello world")
     night_read.split_message
     night_read.translate_to_braille
     assert_equal "0.0.0.0.0....00.0.0.00", night_read.first_row
   end
 
-  def test_it_converts_one_letter_to_the_mid_row_of_braille_character
+  def test_it_converts_appropriate_characters_to_second_row
     night_read = NightRead.new("hello world")
     night_read.split_message
     night_read.translate_to_braille
@@ -41,13 +41,20 @@ class NightReadTest < Minitest::Test
     assert_equal "00.00.0..0..00.0000..0", night_read.second_row
   end
 
-  def test_it_converts_one_letter_to_the_bottom_row_of_braille_character
+  def test_it_converts_appropriate_characters_to_third_row
     night_read = NightRead.new("hello world")
     night_read.split_message
     night_read.translate_to_braille
     assert_equal "0.0.0.0.0....00.0.0.00", night_read.first_row
     assert_equal "00.00.0..0..00.0000..0", night_read.second_row
     assert_equal "....0.0.0....00.0.0...", night_read.third_row
+  end
+
+  def test_it_can_handle_a_longer_message
+    night_read = NightRead.new("hello world")
+    night_read.split_message
+    night_read.translate_to_braille
+
   end
 
 end
