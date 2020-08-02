@@ -13,7 +13,7 @@ class NightReadTest < Minitest::Test
 
   def test_it_can_count_dictionary_key_value_pairs
     night_read = NightRead.new("hello")
-    assert_equal 35, night_read.dictionary.characters.count
+    assert_equal 30, night_read.dictionary.characters.count
   end
 
   def test_it_can_split_incoming_message
@@ -31,32 +31,32 @@ class NightReadTest < Minitest::Test
     night_read = NightRead.new("hello world")
     night_read.split_message
     night_read.translate_to_braille
-    assert_equal "0.0.0.0.0....00.0.0.00", night_read.first_row
+    assert_equal ["0.", "00", ".."], night_read.translate_to_braille[0]
   end
 
   def test_it_converts_appropriate_characters_to_second_row
     night_read = NightRead.new("hello world")
     night_read.split_message
     night_read.translate_to_braille
-    assert_equal "0.0.0.0.0....00.0.0.00", night_read.first_row
-    assert_equal "00.00.0..0..00.0000..0", night_read.second_row
+    assert_equal ["0.", "00", ".."], night_read.translate_to_braille[0]
+    assert_equal ["0.", ".0", ".."], night_read.translate_to_braille[1]
   end
 
   def test_it_converts_appropriate_characters_to_third_row
     night_read = NightRead.new("hello world")
     night_read.split_message
     night_read.translate_to_braille
-    assert_equal "0.0.0.0.0....00.0.0.00", night_read.first_row
-    assert_equal "00.00.0..0..00.0000..0", night_read.second_row
-    assert_equal "....0.0.0....00.0.0...", night_read.third_row
+    assert_equal ["0.", "00", ".."], night_read.translate_to_braille[0]
+    assert_equal ["0.", ".0", ".."], night_read.translate_to_braille[1]
+    assert_equal ["0.", "0.", "0."], night_read.translate_to_braille[2]
   end
 
-  def test_it_can_handle_a_longer_message
+  def test_it_can_return_a_full_braille_output
     night_read = NightRead.new("hello world")
     night_read.split_message
     night_read.translate_to_braille
-    require "pry"; binding.pry
-    night_read.eighty_characters
+    expected = "0.0.0.0.0..00.0.0.00\n00.00.0..000.0000..0\n....0.0.0..00.0.0...\n"
+    assert_equal expected, night_read.braille_output
   end
 
 end

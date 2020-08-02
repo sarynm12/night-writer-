@@ -10,7 +10,7 @@ require 'pry'
   night_read = NightRead.new(message)
 
   braille = night_read.braille_output
-  # braille = night_read.create_braille_groups
+
   writer = File.open(ARGV[1], 'w')
 
   writer.write(braille)
