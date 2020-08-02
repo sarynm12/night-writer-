@@ -20,11 +20,6 @@ class NightRead
     translate_to_braille
   end
 
-  def braille
-    translate_to_braille
-    braille_output
-  end
-
   def translate_to_braille
     split_message
     braille_characters =
