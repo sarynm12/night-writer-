@@ -9,7 +9,6 @@ require 'pry'
 
   night_read = NightRead.new(message)
   braille = night_read.braille_output
-  # require "pry"; binding.pry
   # braille = night_read.create_braille_groups
   writer = File.open(ARGV[1], 'w')
 
