@@ -33,36 +33,18 @@ class NightRead
       split_message.map do |letter|
       @dictionary.characters[letter]
     end
+    braille_characters
   end
 
-  # def first_row
-  #   first_row = ''
-  #   translate_to_braille.each do |element|
-  #     first_row << element[0]
-  #   end
-  #   first_row
-  # end
-  #
-  # def second_row
-  #   second_row = ''
-  #   translate_to_braille.each do |element|
-  #     second_row << element[1]
-  #   end
-  #   second_row
-  # end
-  #
-  # def third_row
-  #   third_row = ''
-  #   translate_to_braille.each do |element|
-  #     third_row << element[2]
-  #   end
-  #   third_row
-  # end
+  def transpose
+    create_braille_groups.compact.transpose
+    #translate_to_braille.transpose
+  end
 
   def braille_output
     # "#{first_row.slice!(0..79) << "\n"}#{second_row.slice!(0..79) << "\n"}#{third_row.slice!(0..79) << "\n"}"
 
-    a = translate_to_braille
+    a = transpose
     one = a[0].slice!(0..79).join("")
     two = a[1].slice!(0..79).join("")
     three = a[2].slice!(0..79).join("")

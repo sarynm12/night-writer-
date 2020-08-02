@@ -54,8 +54,8 @@ class NightReadTest < Minitest::Test
   def test_it_can_handle_a_longer_message
     night_read = NightRead.new("hello world")
     night_read.split_message
-    require "pry"; binding.pry
     night_read.translate_to_braille
+    require "pry"; binding.pry
     night_read.eighty_characters
   end
 
