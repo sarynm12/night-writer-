@@ -1,4 +1,4 @@
-require './lib/dictionary'
+require_relative 'dictionary'
 
 class Reverse
   attr_reader :reverse_characters, :message
@@ -16,41 +16,37 @@ class Reverse
   end
 
   def split
-    array = translate
-    number = (array.length / 3)
-    array.scan(/.{1,#{number}}/)
+    array = self.message
+    one = array[0].join.scan(/../)
+    two = array[1].join.scan(/../)
+    three = array[2].join.scan(/../)
+    chars = one.zip(two, three)
+    chars.transpose
   end
 
-  def top
-    out_top = []
-    out_top << split.fetch(0).scan(/../)
-    return out_top.flatten
-  end
+  def braille_work
+    characters = split
+    first = []
+    second = []
+    characters.each do |character|
+      second << characters[0][0..1]
+      characters[0].slice!(0..1)
+      second << characters[1][0..1]
+      characters[1].slice!(0..1)
+      second << characters[2][0..1]
+      characters[2].slice!(0..1)
 
-  def mid
-    out_mid = []
-    out_mid << split.fetch(1).scan(/../)
-    return out_mid.flatten
-  end
-
-  def bottom
-    out_bottom = []
-    out_bottom << split.fetch(2).scan(/../)
-    return out_bottom.flatten
-  end
-
-  def zip_characters_together
-    top.zip(mid, bottom)
-  end
-
-  def convert_to_english
-    zip_characters_together.map do |letter|
-      @english_alphabet[letter]
+      first << second.join
     end
+    first.join
   end
 
-  def english_result
-    result = convert_to_english
-  end
+  # def convert_to_english
+  #   zip_characters_together.map do |letter|
+  #     @english_alphabet[letter]
+  #   end
+  # end
+
+
 
 end
