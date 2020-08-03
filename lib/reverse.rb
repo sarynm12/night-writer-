@@ -23,6 +23,21 @@ class Reverse
     chars = one.zip(two, three)
   end
 
+  def first_row
+    array = self.message.split("\n")
+    array[0].scan(/../)
+  end
+
+  def second_row
+    array = self.message.split("\n")
+    array[1].scan(/../)
+  end
+
+  def third_row
+    array = self.message.split("\n")
+    array[2].scan(/../)
+  end
+
   def braille_to_english
     chars = split
     result = chars.map do |char|
