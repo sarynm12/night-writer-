@@ -41,15 +41,25 @@ class ReverseTest < Minitest::Test
     assert_equal expected, reverse.chunk(message)
   end
 
-  def test_it_can_split_into_rows
+  def test_it_can_create_a_first_row
     characters = "0.0.0.0.0..00.0.0.0000.00.0..000.0000..0....0.0.0..00.0.0..."
     reverse = Reverse.new(characters)
-    expected1 = ["0.", "0.", "0.", "0.", "0.", ".0", "0.", "0.", "0.", "00"]
-    assert_equal expected1, reverse.first_row
-    expected2 = ["00", ".0", "0.", "0.", ".0", "00", ".0", "00", "0.", ".0"]
-    assert_equal expected2, reverse.second_row
-    expected3 = ["..", "..", "0.", "0.", "0.", ".0", "0.", "0.", "0.", ".."]
-    assert_equal expected3, reverse.third_row
+    expected = ["0.", "0.", "0.", "0.", "0.", ".0", "0.", "0.", "0.", "00"]
+    assert_equal expected, reverse.first_row
+  end
+
+  def test_it_can_create_a_second_row
+    characters = "0.0.0.0.0..00.0.0.0000.00.0..000.0000..0....0.0.0..00.0.0..."
+    reverse = Reverse.new(characters)
+    expected = ["00", ".0", "0.", "0.", ".0", "00", ".0", "00", "0.", ".0"]
+    assert_equal expected, reverse.second_row
+  end
+
+  def test_it_can_create_a_third_row
+    characters = "0.0.0.0.0..00.0.0.0000.00.0..000.0000..0....0.0.0..00.0.0..."
+    reverse = Reverse.new(characters)
+    expected = ["..", "..", "0.", "0.", "0.", ".0", "0.", "0.", "0.", ".."]
+    assert_equal expected, reverse.third_row
   end
 
   def test_it_can_zip

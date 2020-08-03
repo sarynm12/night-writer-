@@ -1,6 +1,6 @@
 require_relative 'dictionary'
 
-class NightRead
+class Translator
   attr_reader :dictionary, :incoming_message
 
   def initialize(incoming_message)
@@ -34,10 +34,16 @@ class NightRead
   end
 
   def braille_output
-    a = transpose
-    one = a[0].slice!(0..79).join("")
-    two = a[1].slice!(0..79).join("")
-    three = a[2].slice!(0..79).join("")
+    array = transpose
+    if @incoming_message.length > 40
+      one = array[0].slice!(0..79).join("\n")
+      two = array[1].slice!(0..79).join("\n")
+      three = array[2].slice!(0..79).join("\n")
+    else
+      one = array[0].join("")
+      two = array[1].join("")
+      three = array[2].join("")
+    end
     result = "#{one}\n#{two}\n#{three}\n"
   end
 

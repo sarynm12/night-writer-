@@ -1,4 +1,4 @@
-require './lib/night_read'
+require './lib/translator'
 require 'pry'
 #ruby ./lib/night_writer.rb message.txt braille.txt
 
@@ -7,9 +7,9 @@ require 'pry'
   characters_count = message.length
   lines.close
 
-  night_read = NightRead.new(message)
+  translator = Translator.new(message)
 
-  braille = night_read.braille_output
+  braille = translator.braille_output
 
   writer = File.open(ARGV[1], 'w')
 
