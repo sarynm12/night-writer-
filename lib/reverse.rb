@@ -16,11 +16,12 @@ class Reverse
   end
 
   def split
-    array = self.message
-    one = array[0].join.scan(/../)
-    two = array[1].join.scan(/../)
-    three = array[2].join.scan(/../)
+    array = self.message.split("\n")
+    one = array[0].scan(/../)
+    two = array[1].scan(/../)
+    three = array[2].scan(/../)
     chars = one.zip(two, three)
+    require "pry"; binding.pry
     chars.transpose
   end
 
@@ -28,24 +29,28 @@ class Reverse
     characters = split
     first = []
     second = []
-    characters.each do |character|
-      second << characters[0][0..1]
-      characters[0].slice!(0..1)
-      second << characters[1][0..1]
-      characters[1].slice!(0..1)
-      second << characters[2][0..1]
-      characters[2].slice!(0..1)
+      self.message.count.times do |character|
+        second << characters[0][0..1]
+        characters[0].slice!(0..1)
+        second << characters[1][0..1]
+        characters[1].slice!(0..1)
+        second << characters[2][0..1]
+        characters[2].slice!(0..1)
 
-      first << second.join
+        first << second.join
+        require "pry"; binding.pry
     end
     first.join
   end
 
-  # def convert_to_english
-  #   zip_characters_together.map do |letter|
-  #     @english_alphabet[letter]
-  #   end
-  # end
+  def braille_to_english
+    result = braille_work.split
+    require "pry"; binding.pry
+    braille_work.map do |letter|
+
+      @reverse_characters[letter]
+    end
+  end
 
 
 
