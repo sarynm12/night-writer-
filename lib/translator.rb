@@ -35,10 +35,23 @@ class Translator
 
   def braille_output
     a = transpose
+    if @incoming_message.length > 40
+      one = a[0].slice!(0..79).join("\n")
+      two = a[1].slice!(0..79).join("\n")
+      three = a[2].slice!(0..79).join("\n")
+    else
+      one = a[0].join("")
+      two = a[1].join("")
+      three = a[2].join("")
+    end
+    result = "#{one}\n#{two}\n#{three}\n"
+  end
+
+  def eighty_lines
+    a = transpose
     one = a[0].slice!(0..79).join("")
     two = a[1].slice!(0..79).join("")
     three = a[2].slice!(0..79).join("")
-    result = "#{one}\n#{two}\n#{three}\n"
   end
 
 end
