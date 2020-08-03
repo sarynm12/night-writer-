@@ -1,6 +1,6 @@
 require_relative 'dictionary'
 
-class NightRead
+class Translator
   attr_reader :dictionary, :incoming_message
 
   def initialize(incoming_message)
