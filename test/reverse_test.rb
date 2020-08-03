@@ -42,7 +42,7 @@ class ReverseTest < Minitest::Test
   end
 
   def test_it_can_split_into_rows
-    characters = "0.0.0.0.0..00.0.0.00\n00.00.0..000.0000..0\n....0.0.0..00.0.0...\n"
+    characters = "0.0.0.0.0..00.0.0.0000.00.0..000.0000..0....0.0.0..00.0.0..."
     reverse = Reverse.new(characters)
     expected1 = ["0.", "0.", "0.", "0.", "0.", ".0", "0.", "0.", "0.", "00"]
     assert_equal expected1, reverse.first_row
@@ -53,7 +53,7 @@ class ReverseTest < Minitest::Test
   end
 
   def test_it_can_zip
-    characters = "0.0.0.0.0..00.0.0.00\n00.00.0..000.0000..0\n....0.0.0..00.0.0...\n"
+    characters = "0.0.0.0.0..00.0.0.0000.00.0..000.0000..0....0.0.0..00.0.0..."
     reverse = Reverse.new(characters)
     expected = [["0.", "00", ".."], ["0.", ".0", ".."], ["0.", "0.", "0."], ["0.", "0.", "0."], ["0.", ".0", "0."], [".0", "00", ".0"], ["0.", ".0", "0."], ["0.", "00", "0."], ["0.", "0.", "0."], ["00", ".0", ".."]]
     assert_equal expected, reverse.zip_rows
