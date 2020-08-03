@@ -14,10 +14,16 @@ class ReverseTest < Minitest::Test
     assert_instance_of Reverse, reverse
   end
 
+  def test_it_can_count_dictionary_key_value_pairs
+    characters = "0.0.0.0.0..00.0.0.0000.00.0..000.0000..0....0.0.0..00.0.0..."
+    reverse = Reverse.new(characters)
+    assert_equal 30, reverse.reverse_characters.count
+  end
+
   def test_it_has_a_message
     characters = "0.0.0.0.0..00.0.0.0000.00.0..000.0000..0....0.0.0..00.0.0..."
     reverse = Reverse.new(characters)
-    assert_equal "0.0.0.0.0..00.0.0.0000.00.0..000.0000..0....0.0.0..00.0.0...", reverse.message 
+    assert_equal "0.0.0.0.0..00.0.0.0000.00.0..000.0000..0....0.0.0..00.0.0...", reverse.message
   end
 
   def test_it_can_translate_hardcoded_arrays
