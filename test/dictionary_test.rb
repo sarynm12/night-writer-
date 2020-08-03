@@ -11,11 +11,15 @@ class DictionaryTest < Minitest::Test
     assert_instance_of Dictionary, dictionary
   end
 
-  def test_it_can_translate
+  def test_it_can_find_correct_value_when_given_a_key
+    dictionary = Dictionary.new
+    assert_equal ["0.","..",".."], dictionary.characters["a"]
+    assert_equal ["0.", ".0", ".."], dictionary.characters["e"]
+  end
+
+  def test_it_can_translate_characters
     dictionary = Dictionary.new
     assert_equal [["0.", "00", ".."], ["0.", ".0", ".."], ["0.", "0.", "0."], ["0.", "0.", "0."], ["0.", ".0", "0."]], dictionary.translate("hello")
   end
-
-
 
 end
