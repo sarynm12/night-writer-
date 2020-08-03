@@ -23,8 +23,7 @@ class ReverseTest < Minitest::Test
   def test_it_can_split_string_of_braille_characters
     characters = "0.0.0.0.0..00.0.0.00\n00.00.0..000.0000..0\n....0.0.0..00.0.0...\n"
     reverse = Reverse.new(characters)
-    require "pry"; binding.pry
-    assert_equal ["h", "e", "l", "l", "o"], result = reverse.split
+    assert_equal [["0.", "00", ".."], ["0.", ".0", ".."], ["0.", "0.", "0."], ["0.", "0.", "0."], ["0.", ".0", "0."], [".0", "00", ".0"], ["0.", ".0", "0."], ["0.", "00", "0."], ["0.", "0.", "0."], ["00", ".0", ".."]], reverse.split
   end
 
 end
