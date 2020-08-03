@@ -23,7 +23,13 @@ class ReverseTest < Minitest::Test
   def test_it_can_return_length_of_message
     characters = "0.0.0.0.0..00.0.0.0000.00.0..000.0000..0....0.0.0..00.0.0..."
     reverse = Reverse.new(characters)
-    assert_equal 60, reverse.string_length 
+    assert_equal 60, reverse.string_length
+  end
+
+  def test_it_can_calculate_number_to_use_in_chunk_method
+    characters = "0.0.0.0.0..00.0.0.0000.00.0..000.0000..0....0.0.0..00.0.0..."
+    reverse = Reverse.new(characters)
+    assert_equal 20, reverse.string_divided
   end
 
   def test_it_can_split_into_one_array
