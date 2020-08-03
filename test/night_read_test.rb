@@ -53,6 +53,23 @@ class NightReadTest < Minitest::Test
     assert_equal ["0.", "0.", "0."], night_read.translate_to_braille[2]
   end
 
+  def test_it_can_create_braille_groups
+    night_read = NightRead.new("hello world")
+    night_read.split_message
+    expected = [["0.", "00", ".."],
+               ["0.", ".0", ".."],
+               ["0.", "0.", "0."],
+               ["0.", "0.", "0."],
+               ["0.", ".0", "0."],
+               nil,
+               [".0", "00", ".0"],
+               ["0.", ".0", "0."],
+               ["0.", "00", "0."],
+               ["0.", "0.", "0."],
+               ["00", ".0", ".."]]
+    assert_equal expected, night_read.create_braille_groups 
+  end
+
   def test_it_can_return_a_full_braille_output
     night_read = NightRead.new("hello world")
     night_read.split_message
