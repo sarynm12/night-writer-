@@ -98,11 +98,4 @@ class TranslatorTest < Minitest::Test
     assert_equal expected, translator.braille_output
   end
 
-  def test_eighty_lines
-    translator = Translator.new("abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd")
-    translator.split_message
-    translator.translate_to_braille
-    assert_equal [], translator.braille_output
-  end
-
 end
