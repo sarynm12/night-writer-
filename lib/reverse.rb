@@ -15,8 +15,20 @@ class Reverse
     result.join
   end
 
+  def string_length
+    length = @message.length
+  end
+
+  def string_divided
+    return (string_length / 3)
+  end
+
+  def chunk(message, size = (self.string_divided))
+    result = @message.scan(/.{1,#{size}}/)
+  end
+
   def split
-    self.message.split("\n")
+    self.chunk(message, size = (self.string_divided))
   end
 
   def first_row
@@ -45,7 +57,5 @@ class Reverse
     end
     result.join
   end
-
-
 
 end
