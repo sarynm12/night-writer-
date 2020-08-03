@@ -21,9 +21,8 @@ class ReverseTest < Minitest::Test
   end
 
   def test_it_can_split_string_of_braille_characters
-    characters = [["0.", "00", ".."], ["0.", ".0", ".."], ["0.", "0.", "0."], ["0.", "0.", "0."], ["0.", ".0", "0."]]
+    characters = "0.0.0.0.0..00.0.0.00\n00.00.0..000.0000..0\n....0.0.0..00.0.0...\n"
     reverse = Reverse.new(characters)
-    reverse.translate
     require "pry"; binding.pry
     assert_equal ["h", "e", "l", "l", "o"], result = reverse.split
   end
