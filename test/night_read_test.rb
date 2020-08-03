@@ -13,6 +13,11 @@ class NightReadTest < Minitest::Test
     assert_instance_of NightRead, night_read
   end
 
+  def test_it_has_an_incoming_message
+    night_read = NightRead.new("hello")
+    assert_equal "hello", night_read.incoming_message
+  end
+
   def test_it_can_count_dictionary_key_value_pairs
     night_read = NightRead.new("hello")
     assert_equal 30, night_read.dictionary.characters.count
@@ -51,6 +56,38 @@ class NightReadTest < Minitest::Test
     assert_equal ["0.", "00", ".."], night_read.translate_to_braille[0]
     assert_equal ["0.", ".0", ".."], night_read.translate_to_braille[1]
     assert_equal ["0.", "0.", "0."], night_read.translate_to_braille[2]
+  end
+
+  def test_it_can_create_braille_groups
+    night_read = NightRead.new("hello world")
+    night_read.split_message
+    expected = [["0.", "00", ".."],
+               ["0.", ".0", ".."],
+               ["0.", "0.", "0."],
+               ["0.", "0.", "0."],
+               ["0.", ".0", "0."],
+               nil,
+               [".0", "00", ".0"],
+               ["0.", ".0", "0."],
+               ["0.", "00", "0."],
+               ["0.", "0.", "0."],
+               ["00", ".0", ".."]]
+    assert_equal expected, night_read.create_braille_groups
+  end
+
+  def test_it_can_compact_and_transpose
+    night_read = NightRead.new("hello world")
+    night_read.split_message
+    night_read.create_braille_groups
+    expected = [["0.", "0.", "0.", "0.", "0.", ".0", "0.", "0.", "0.", "00"], ["00", ".0", "0.", "0.", ".0", "00", ".0", "00", "0.", ".0"], ["..", "..", "0.", "0.", "0.", ".0", "0.", "0.", "0.", ".."]]
+    assert_equal expected, night_read.transpose
+  end
+
+  def test_it_has_three_lines_after_transposing
+    night_read = NightRead.new("hello world")
+    night_read.split_message
+    night_read.create_braille_groups
+    assert_equal 3, night_read.transpose.count 
   end
 
   def test_it_can_return_a_full_braille_output

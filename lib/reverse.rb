@@ -15,22 +15,47 @@ class Reverse
     result.join
   end
 
+  def string_length
+    length = @message.length
+  end
+
+  def string_divided
+    return (string_length / 3)
+  end
+
+  def chunk(message, size = (self.string_divided))
+    result = @message.scan(/.{1,#{size}}/)
+  end
+
   def split
-    array = self.message.split("\n")
-    one = array[0].scan(/../)
-    two = array[1].scan(/../)
-    three = array[2].scan(/../)
-    chars = one.zip(two, three)
+    self.chunk(message, size = (self.string_divided))
+  end
+
+  def first_row
+    array = split
+    array[0].scan(/../)
+  end
+
+  def second_row
+    array = split
+    array[1].scan(/../)
+  end
+
+  def third_row
+    array = split
+    array[2].scan(/../)
+  end
+
+  def zip_rows
+    first_row.zip(second_row, third_row)
   end
 
   def braille_to_english
-    chars = split
+    chars = zip_rows
     result = chars.map do |char|
       @reverse_characters[char]
     end
     result.join
   end
-
-
 
 end
