@@ -14,18 +14,18 @@ class ReverseTest < Minitest::Test
     assert_instance_of Reverse, reverse
   end
 
-  # def test_it_has_a_message
-  #   stubbed = "0.0.0.0.0..00.0.0.00\n00.00.0..000.0000..0\n....0.0.0..00.0.0...\n"
-  #   Reverse.stubs(:message).returns(stubbed)
-  #   reverse = Reverse.new(message)
-  #   require "pry"; binding.pry
-  #   assert_equal [["0.", "00", ".."], ["0.", ".0", ".."]], reverse.message
-  # end
-
   def test_it_can_translate_given_arrays
     characters = [["0.", "00", ".."], ["0.", ".0", ".."], ["0.", "0.", "0."], ["0.", "0.", "0."], ["0.", ".0", "0."]]
     reverse = Reverse.new(characters)
     assert_equal "hello", reverse.translate
+  end
+
+  def test_it_can_split_into_one_array
+    characters = "0.0.0.0.0..00.0.0.00\n00.00.0..000.0000..0\n....0.0.0..00.0.0...\n"
+    reverse = Reverse.new(characters)
+    expected = ["0.0.0.0.0..00.0.0.00", "00.00.0..000.0000..0", "....0.0.0..00.0.0..."]
+    assert_equal expected, reverse.split
+    assert_equal Array, reverse.split.class
   end
 
   def test_it_can_split_into_rows
@@ -39,10 +39,11 @@ class ReverseTest < Minitest::Test
     assert_equal expected3, reverse.third_row
   end
 
-  def test_it_can_split_string_of_braille_characters
+  def test_it_can_zip
     characters = "0.0.0.0.0..00.0.0.00\n00.00.0..000.0000..0\n....0.0.0..00.0.0...\n"
     reverse = Reverse.new(characters)
-    assert_equal [["0.", "00", ".."], ["0.", ".0", ".."], ["0.", "0.", "0."], ["0.", "0.", "0."], ["0.", ".0", "0."], [".0", "00", ".0"], ["0.", ".0", "0."], ["0.", "00", "0."], ["0.", "0.", "0."], ["00", ".0", ".."]], reverse.split
+    expected = [["0.", "00", ".."], ["0.", ".0", ".."], ["0.", "0.", "0."], ["0.", "0.", "0."], ["0.", ".0", "0."], [".0", "00", ".0"], ["0.", ".0", "0."], ["0.", "00", "0."], ["0.", "0.", "0."], ["00", ".0", ".."]]
+    assert_equal expected, reverse.zip_rows
   end
 
 end
