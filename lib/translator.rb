@@ -34,7 +34,7 @@ class Translator
 
   def braille_output
     array = transpose
-    if @incoming_message.length > 40
+    if array.length > 80
       one = array[0].slice!(0..79).join("\n")
       two = array[1].slice!(0..79).join("\n")
       three = array[2].slice!(0..79).join("\n")
