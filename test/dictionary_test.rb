@@ -22,9 +22,4 @@ class DictionaryTest < Minitest::Test
     assert_equal 30, dictionary.characters.count
   end
 
-  def test_it_can_translate_characters
-    dictionary = Dictionary.new
-    assert_equal [["0.", "00", ".."], ["0.", ".0", ".."], ["0.", "0.", "0."], ["0.", "0.", "0."], ["0.", ".0", "0."]], dictionary.translate("hello")
-  end
-
 end
