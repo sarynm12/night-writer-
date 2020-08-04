@@ -21,7 +21,6 @@ class Translator
   end
 
   def translate_to_braille
-    split_message
     braille_characters =
       split_message.map do |letter|
       @dictionary.characters[letter]
