@@ -12,20 +12,20 @@ class Translator
     @incoming_message.chars
   end
 
+  def translate_to_braille
+    braille_characters =
+    split_message.map do |letter|
+      @dictionary.characters[letter]
+    end
+    braille_characters
+  end
+
   def create_braille_groups
     one = split_message[0].scan(/../)
     two = split_message[1].scan(/../)
     three = split_message[2].scan(/../)
     letters = one.zip(two, three)
     translate_to_braille
-  end
-
-  def translate_to_braille
-    braille_characters =
-      split_message.map do |letter|
-      @dictionary.characters[letter]
-    end
-    braille_characters
   end
 
   def transpose
